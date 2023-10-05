@@ -1,4 +1,5 @@
 package com.stctv.subscribe.testcases;
+import com.shaft.driver.SHAFT;
 import com.stctv.subscribe.base.BaseTest;
 import com.stctv.subscribe.pages.SaPage;
 import io.cucumber.java.en.Given;
@@ -8,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NavigateTest extends BaseTest {
+    SHAFT.GUI.WebDriver Browser = new SHAFT.GUI.WebDriver();
     protected String actualLiteTitle;
     protected String actualClassicTitle;
     protected String actualPremiumTitle;
@@ -17,11 +19,10 @@ public class NavigateTest extends BaseTest {
 
 
 
-
-
+    // Happy Scenario
     @Given("User selects one of the countries")
     @Test
-    public void SubscriptionSaudiArabiaTC2() {
+    public void SubscriptionSaudiArabiaTC1() {
 
         SaPage sapage = new SaPage(driver);
         sapage.subscriptionSa();
@@ -44,9 +45,10 @@ public class NavigateTest extends BaseTest {
 
     }
 
+    // Happy Scenario
     @When("User Validate the Subscription Packages Type, Price and Currency")
     @Test
-    public void SubscriptionKuwaitTC3() {
+    public void SubscriptionKuwaitTC2() {
         SaPage kwpage = new SaPage(driver);
         kwpage.subscriptionKw();
 
@@ -70,9 +72,10 @@ public class NavigateTest extends BaseTest {
 
     }
 
+    // Failed Scenario
     @Then("User knows the data of each packages")
     @Test
-    public void SubscriptionBaharinTC4() {
+    public void SubscriptionBaharinTC3() {
         SaPage bhpage = new SaPage(driver);
         bhpage.subscriptionBh();
 
@@ -86,7 +89,7 @@ public class NavigateTest extends BaseTest {
         Assert.assertEquals(actualLiteTitle, "LITE");
         Assert.assertEquals(actualClassicTitle, "CLASSIC");
         Assert.assertEquals(actualPremiumTitle, "PREMIUM");
-        Assert.assertEquals(actualCurrencyLite, "2 BHD/month");
+        Assert.assertEquals(actualCurrencyLite, "1 BHD/month");
         Assert.assertEquals(actualCurrencyClassic, "3 BHD/month");
         Assert.assertEquals(actualCurrencyPremium, "6 BHD/month");
 
