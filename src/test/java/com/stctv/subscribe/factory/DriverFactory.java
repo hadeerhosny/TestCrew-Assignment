@@ -4,13 +4,31 @@ import io.cucumber.java.en.Given;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
 
-    @Given("User selects one of the countries")
     public WebDriver initializeDriver() {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+
+        String browser = System.getProperty("browser", "CHROME");
+        WebDriver driver;
+        switch (browser) {
+            case "CHROME":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case "FIREFOX":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "EDGE":
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new RuntimeException("The browser is not Supported");
+        }
 
         // Navigate to the URL
         driver.get("https://subscribe.stctv.com/sa-en");

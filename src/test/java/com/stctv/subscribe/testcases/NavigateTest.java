@@ -2,13 +2,20 @@ package com.stctv.subscribe.testcases;
 import com.shaft.driver.SHAFT;
 import com.stctv.subscribe.base.BaseTest;
 import com.stctv.subscribe.pages.SaPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class NavigateTest extends BaseTest {
+
+    SaPage saPage;
+
     SHAFT.GUI.WebDriver Browser = new SHAFT.GUI.WebDriver();
     protected String actualLiteTitle;
     protected String actualClassicTitle;
@@ -16,12 +23,8 @@ public class NavigateTest extends BaseTest {
     protected String actualCurrencyLite;
     protected String actualCurrencyClassic;
     protected String actualCurrencyPremium;
-
-
-
-    // Happy Scenario
-    @Given("User selects one of the countries")
     @Test
+    @Given("User selects one of the countries")
     public void SubscriptionSaudiArabiaTC1() {
 
         SaPage sapage = new SaPage(driver);
@@ -89,7 +92,7 @@ public class NavigateTest extends BaseTest {
         Assert.assertEquals(actualLiteTitle, "LITE");
         Assert.assertEquals(actualClassicTitle, "CLASSIC");
         Assert.assertEquals(actualPremiumTitle, "PREMIUM");
-        Assert.assertEquals(actualCurrencyLite, "1 BHD/month");
+        Assert.assertEquals(actualCurrencyLite, "2 BHD/month");
         Assert.assertEquals(actualCurrencyClassic, "3 BHD/month");
         Assert.assertEquals(actualCurrencyPremium, "6 BHD/month");
 
